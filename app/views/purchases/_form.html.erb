@@ -1,41 +1,34 @@
-<%= form_for(@purchase) do |f| %>
-  <% if @purchase.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
-
-      <ul>
-      <% @purchase.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for @purchase, :html => { :class => 'form-horizontal form-model' } do |f| %>
+  <div class="form-group">
+    <%= f.label :purchase_amount, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :purchase_amount, :class => 'text-field form-control' %>
     </div>
-  <% end %>
+  </div>
+  <div class="form-group">
+    <%= f.label :purchase_datetime, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.datetime_select :purchase_datetime, :class => 'text-field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :user_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.number_field :user_id, :class => 'text-field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :fund_id, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.number_field :fund_id, :class => 'text-field form-control' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :purchase_amount %><br>
-    <%= f.text_field :purchase_amount %>
-  </div>
-  <div class="field">
-    <%= f.label :purchase_datetime %><br>
-    <%= f.datetime_select :purchase_datetime %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :fund_id %><br>
-    <%= f.number_field :fund_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :fund_id %><br>
-    <%= f.text_field :fund_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  purchases_path, :class => 'btn btn-default' %>
+    </div>
   </div>
 <% end %>
